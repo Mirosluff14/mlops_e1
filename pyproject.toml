@@ -1,18 +1,9 @@
-[project]
+[tool.poetry]
 name = "mlops-e1"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = [
-    "fastapi[standard]>=0.115.7",
-    "gymnasium>=1.0.0",
-    "ipykernel>=6.29.5",
-    "stable-baselines3>=2.5.0",
-    "torch>=2.5.1",
-    "websockets>=14.2",
-]
-[tool.poetry.dependencies]
 dependencies = [
     "fastapi[standard]>=0.115.7",
     "gymnasium>=1.0.0",
