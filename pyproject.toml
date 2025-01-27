@@ -13,6 +13,7 @@ dependencies = [
     "websockets>=14.2",
 ]
 [tool.poetry]
+version = "1.0"
 dependencies = [
     "fastapi[standard]>=0.115.7",
     "gymnasium>=1.0.0",
