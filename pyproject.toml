@@ -5,17 +5,15 @@ description = "Add your description here"
 readme = "README.md"
 authors = ["Your Name <youremail@example.com>"]
 license = "MIT"
-dependencies = [
-    "fastapi[standard]>=0.115.7",
-    "gymnasium>=1.0.0",
-    "ipykernel>=6.29.5",
-    "stable-baselines3>=2.5.0",
-    "torch>=2.5.1",
-    "websockets>=14.2"
-]
 
-[tool.poetry.dev-dependencies]
-# Add your dev dependencies here, if any
+[tool.poetry.dependencies]
+python = ">=3.12"
+fastapi = { version = ">=0.115.7", extras = ["standard"] }
+gymnasium = ">=1.0.0"
+ipykernel = ">=6.29.5"
+stable-baselines3 = ">=2.5.0"
+torch = ">=2.5.1"
+websockets = ">=14.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
