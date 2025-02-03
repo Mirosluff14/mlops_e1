@@ -5,9 +5,7 @@ app = FastAPI()
 
 # http://localhost:8000
 
-@app.get("/")
-def index():
-    return "Hello MLops"
+
 
 html = """
 <!DOCTYPE html>
@@ -43,9 +41,11 @@ html = """
 </html>
 """
 
-@app.get("/example")
+@app.get("/")
 async def get():
     return HTMLResponse(html)
+
+
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
@@ -54,3 +54,7 @@ async def websocket_endpoint(websocket: WebSocket):
         data:str
         data = await websocket.receive_text()
         await websocket.send_text(f"Message text was: {data}")
+
+@app.get("/example")
+async def get():
+    return HTMLResponse(html)
