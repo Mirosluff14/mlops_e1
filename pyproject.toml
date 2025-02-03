@@ -9,10 +9,6 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = ">=3.11"
 fastapi = { version = ">=0.115.7", extras = ["standard"] }
-gymnasium = ">=1.0.0"
-ipykernel = ">=6.29.5"
-stable-baselines3 = ">=2.5.0"
-torch = ">=2.5.1"
 websockets = ">=14.2"
 
 [build-system]
