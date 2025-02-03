@@ -12,3 +12,7 @@ dependencies = [
     "torch>=2.5.1",
     "websockets>=14.2",
 ]
+
+[build-system]
+requires = ["uv"]
+build-backend = "uv.build_backend"
