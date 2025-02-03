@@ -7,6 +7,7 @@ app = FastAPI()
 
 
 
+
 html = """
 <!DOCTYPE html>
 <html>
