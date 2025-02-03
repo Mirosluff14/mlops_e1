@@ -3,7 +3,7 @@ name = "mlops-e1"
 version = "0.1.0"
 description = "A test app project"
 readme = "README.md"
-authors = ["miivanov@edu.lapinamk.fi>"]
+authors = ["Miroslav Ivanov miivanov@edu.lapinamk.fi>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
