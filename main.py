@@ -3,22 +3,17 @@ from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from pydantic import BaseModel
 from typing import List, Dict
 import json
-import random  # Simulating ML model processing
 
 
 # Define the app
 app = FastAPI()
 
-# In-memory data storage and websocket connections
-data_store: List[Dict] = []  # Stores the data that is posted via the POST endpoint
 connected_websockets: List[WebSocket] = []  # List of connected websocket clients
-ml_response = {}
-input_data = {}
-
+ml_response = {}  # Store the response from the ML model
 
 # Define a Pydantic model for the data to be posted
 class Data(BaseModel):
-    message: str  # Replace with your actual data model
+    message: Dict  # Replace with your actual data model with dtypes (numpy array, etc.)
 
 @app.get("/")
 async def read_root():
@@ -27,7 +22,10 @@ async def read_root():
 # POST endpoint to receive the data
 @app.post("/post_data")
 async def post_data(data: Data):
-    global ml_response
+    global ml_response # define ml_response as global variable to access it from other functions
+
+    # Add timer for the timeout
+    timer = 0
 
     # Send the data to the connected websockets
     for websocket in connected_websockets:
@@ -38,9 +36,12 @@ async def post_data(data: Data):
         if "data" in ml_response:
             break
         await asyncio.sleep(1)
+        timer += 1
+        if timer > 10:  # Timeout after 10 seconds
+            return {"status": "error", "message": "Timeout: ML model response not received"}
     
     response = ml_response
-    ml_response = {}
+    ml_response = {} # Reset the ml_response for the next request
 
     return {"status": "success", "data": response}
 
@@ -66,6 +67,3 @@ async def websocket_endpoint(websocket: WebSocket):
     except WebSocketDisconnect:
         # Handle WebSocket disconnection
         connected_websockets.remove(websocket)
-
-
-# You can include other helper functions or machine learning logic to process data here

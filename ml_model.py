@@ -6,7 +6,7 @@ import json
 
 async def listen_to_data():
     # URL of your FastAPI WebSocket endpoint
-    uri = "wss://mlops-e1-fastapi.onrender.com/ws"  # Replace with your server's URL
+    uri = "wss://mlops-e1-fastapi.onrender.com/ws"  # Replace with your server's URL (NOTE: wss is secure version of ws, Render comes with SSL)
 
     # Connect to the WebSocket
     async with websockets.connect(uri) as websocket:
