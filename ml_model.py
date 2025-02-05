@@ -3,6 +3,7 @@
 import asyncio
 import websockets
 import json
+import time
 
 async def listen_to_data():
     # URL of your FastAPI WebSocket endpoint
@@ -32,5 +33,16 @@ async def listen_to_data():
                 await websocket.send(json.dumps({"type": "ml_response", "data": processed_data}))
                 print("Sent response:", processed_data)
 
-# Run the WebSocket listener in an event loop
-asyncio.get_event_loop().run_until_complete(listen_to_data())
+while True:
+    time.sleep(2)
+    try:
+        # Run the WebSocket listener in an event loop
+        asyncio.get_event_loop().run_until_complete(listen_to_data())
+        
+    except KeyboardInterrupt:
+        print("\nProgram interrupted by user. Exiting...")
+        exit(0)  # Exit the program gracefully
+
+    except Exception as e:
+        print(f"Exception: {e}")
+        print("Attempting reconnecting...")
